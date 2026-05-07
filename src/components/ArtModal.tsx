@@ -365,17 +365,19 @@ export default function ArtModal({
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        <div
+        <a
+          href="/"
           style={{
             fontFamily: "var(--font-display), 'Pinyon Script', cursive",
             fontSize: 24,
             color: "#1a1a1a",
             whiteSpace: "nowrap",
             lineHeight: 1,
+            textDecoration: "none",
           }}
         >
           Lyndon Johnson
-        </div>
+        </a>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <button onClick={onPrev} style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 4px" }}>
             <span style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999" }}>prev</span>
@@ -411,11 +413,11 @@ export default function ArtModal({
           <FlatView piece={piece} />
         </div>
 
-        {/* Mode label */}
-        <div style={{ position: "absolute", top: 16, left: 16, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", display: "flex", gap: 12, pointerEvents: "none" }}>
-          <span style={{ color: mode === "framed" ? "#1a1a1a" : "#ccc", transition: "color 200ms" }}>3D</span>
-          <span style={{ color: "#e0e0e0" }}>·</span>
-          <span style={{ color: mode === "flat" ? "#1a1a1a" : "#ccc", transition: "color 200ms" }}>2D</span>
+        {/* Mode toggle */}
+        <div style={{ position: "absolute", top: 16, left: 16, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", display: "flex", gap: 12, zIndex: 5 }}>
+          <button onClick={() => setMode("framed")} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", color: mode === "framed" ? "#1a1a1a" : "#ccc", transition: "color 200ms", fontSize: "inherit", letterSpacing: "inherit", textTransform: "inherit" }}>3D</button>
+          <span style={{ color: "#e0e0e0", pointerEvents: "none" }}>·</span>
+          <button onClick={() => setMode("flat")} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", color: mode === "flat" ? "#1a1a1a" : "#ccc", transition: "color 200ms", fontSize: "inherit", letterSpacing: "inherit", textTransform: "inherit" }}>2D</button>
         </div>
 
         {/* Right arrow */}
