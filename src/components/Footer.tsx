@@ -22,16 +22,18 @@ export default function Footer() {
       >
         Lyndon Johnson
       </div>
-      <div
+      <a
+        href="mailto:jessicalynn11@yahoo.com"
         style={{
           fontSize: 12,
           color: "#999",
           letterSpacing: "0.18em",
           textTransform: "uppercase",
+          textDecoration: "none",
         }}
       >
-        studio@lyndonjohnson.art
-      </div>
+        jessicalynn11@yahoo.com
+      </a>
     </footer>
   );
 }

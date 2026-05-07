@@ -87,6 +87,17 @@ export default function AboutPage() {
           style={{
             paddingTop: 28,
             borderTop: "1px solid #efefef",
+            fontSize: 14,
+            color: "#666",
+            lineHeight: 1.75,
+            marginBottom: 32,
+          }}
+        >
+          If you own or have come across one of Lyndon&rsquo;s paintings and would like to share information or connect with the family, please reach out to his niece Jessica at the address below.
+        </div>
+
+        <div
+          style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: 32,
@@ -96,12 +107,12 @@ export default function AboutPage() {
           }}
         >
           <div>
-            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>in memory</div>
-            <span style={{ color: "#1a1a1a" }}>1941–1995</span>
+            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>contact</div>
+            <a href="mailto:jessicalynn11@yahoo.com" style={{ color: "#1a1a1a", textDecoration: "none" }}>jessicalynn11@yahoo.com</a>
           </div>
           <div>
-            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>houston, texas</div>
-            <span style={{ color: "#1a1a1a" }}>artist &amp; hairstylist</span>
+            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>in memory</div>
+            <span style={{ color: "#1a1a1a" }}>Houston, TX · 1941–1995</span>
           </div>
         </div>
       </main>
