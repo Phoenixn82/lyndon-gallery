@@ -1,45 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EditorialGrid from "@/components/EditorialGrid";
 import ArtModal from "@/components/ArtModal";
-import { defaultArtworks, type ArtPiece } from "@/data/artworks";
-
-function loadArtworks(): ArtPiece[] {
-  if (typeof window === "undefined") return defaultArtworks;
-  const stored = localStorage.getItem("lj-artworks");
-  if (stored) {
-    try {
-      return JSON.parse(stored);
-    } catch {
-      return defaultArtworks;
-    }
-  }
-  return defaultArtworks;
-}
+import { defaultArtworks } from "@/data/artworks";
 
 export default function GalleryPage() {
-  const [pieces, setPieces] = useState<ArtPiece[]>([]);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setPieces(loadArtworks());
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const onStorage = () => setPieces(loadArtworks());
-    window.addEventListener("storage", onStorage);
-    window.addEventListener("artworks-updated", onStorage);
-    return () => {
-      window.removeEventListener("storage", onStorage);
-      window.removeEventListener("artworks-updated", onStorage);
-    };
-  }, []);
-
-  if (!mounted) return null;
+  const pieces = defaultArtworks;
 
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", color: "#1a1a1a" }}>

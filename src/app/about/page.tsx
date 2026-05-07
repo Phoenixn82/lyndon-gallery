@@ -64,17 +64,23 @@ export default function AboutPage() {
             marginBottom: 56,
           }}
         >
-          painter · b. 1962
+          artist · hairstylist · 1941–1995
         </div>
 
         <div style={{ fontSize: 16, color: "#333", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 28 }}>
-          Lyndon Johnson is a painter living in upstate New York. His work concerns interior light, slow attention, and the small weather of a given afternoon. Recent paintings have been shown in Hudson, Marfa, and a converted hayloft outside Ghent.
+          Lyndon Duane Johnson (October 17, 1941 – January 13, 1995) was a celebrated Houston artist, hairstylist, and entrepreneur whose life was defined by beauty, creativity, and a remarkable ability to transform the world around him. Known throughout Houston as the &ldquo;hairdresser to the stars,&rdquo; Lyndon built a reputation not only for exceptional style, but for his larger-than-life personality, artistic vision, and deep influence within the city&rsquo;s social and cultural circles.
         </div>
         <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 28 }}>
-          He paints almost entirely in oil, often on linen, and prefers the studio cold. Each finished canvas is signed and inscribed on the verso — the back of the canvas — with the date the painting was considered finished and, occasionally, a line about the day.
+          A graduate of Angleton High School and Stevens College of Cosmetology, Lyndon began his career in Houston at Sakowitz Beauty Salon before founding the internationally recognized Michaeljohnson Beauty Salon alongside Michael and Lyndon Johnson Beauty Salon. His celebrity clientele included Louise Cooley, Ivana Trump, Carol Channing, Barbara Walters, and Rosemary Clooney, and he traveled with Houston clients to prestigious events such as the wedding of Prince Charles and Princess Diana and the Bal de la Rose hosted by Lynn Wyatt in Monte Carlo.
         </div>
-        <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 56 }}>
-          He does not keep social media. Studio visits and inquiries may be sent to the address below; replies tend to be slow but considered.
+        <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 28 }}>
+          His prominence extended beyond the salon. Lyndon was featured in publications including Texas Monthly, Vogue, Harper&rsquo;s Bazaar, and the London Sunday Mail. In addition to his beauty career, he was a talented visual artist whose paintings and landscapes, especially his impressionist work, were widely sought after. In 1992, he began painting in earnest, and his artwork quickly gained recognition, with pieces selling for as much as $1,200.
+        </div>
+        <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 28 }}>
+          Lyndon believed beauty was both an art and a form of confidence. Whether through hairstyling, makeup, fashion guidance, or painting, he helped people see themselves and the world around them, with greater elegance and possibility. His legacy remains one of style, artistry, and unforgettable presence.
+        </div>
+        <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 56, fontStyle: "italic" }}>
+          This website is dedicated to preserving and celebrating his life, his work, and the lasting mark he left on Houston&rsquo;s artistic and cultural community.
         </div>
 
         <div
@@ -90,12 +96,12 @@ export default function AboutPage() {
           }}
         >
           <div>
-            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>contact</div>
-            <a href="mailto:studio@lyndonjohnson.art" style={{ color: "#1a1a1a", textDecoration: "none" }}>studio@lyndonjohnson.art</a>
+            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>in memory</div>
+            <span style={{ color: "#1a1a1a" }}>1941–1995</span>
           </div>
           <div>
-            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>studio visits</div>
-            <span style={{ color: "#1a1a1a" }}>by appointment</span>
+            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>houston, texas</div>
+            <span style={{ color: "#1a1a1a" }}>artist &amp; hairstylist</span>
           </div>
         </div>
       </main>
