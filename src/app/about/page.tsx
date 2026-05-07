@@ -41,10 +41,9 @@ export default function AboutPage() {
 
         <div
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
-            fontWeight: 300,
-            fontStyle: "italic",
-            fontSize: 56,
+            fontFamily: "var(--font-display), 'Pinyon Script', cursive",
+            fontWeight: 400,
+            fontSize: 64,
             color: "#1a1a1a",
             textAlign: "center",
             letterSpacing: "-0.01em",

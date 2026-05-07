@@ -26,18 +26,35 @@ export default function Header() {
       <Link
         href="/"
         style={{
-          fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
-          fontWeight: 300,
-          fontStyle: "italic",
-          fontSize: 28,
-          color: "#1a1a1a",
-          letterSpacing: "-0.01em",
-          lineHeight: 1,
-          whiteSpace: "nowrap",
           textDecoration: "none",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
         }}
       >
-        Lyndon Johnson
+        <span
+          style={{
+            fontFamily: "var(--font-display), 'Pinyon Script', cursive",
+            fontWeight: 400,
+            fontSize: 32,
+            color: "#1a1a1a",
+            lineHeight: 1,
+            whiteSpace: "nowrap",
+          }}
+        >
+          Lyndon Johnson
+        </span>
+        <span
+          style={{
+            fontSize: 9,
+            color: "#999",
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+            marginTop: 2,
+          }}
+        >
+          art gallery
+        </span>
       </Link>
       <Link
         href={isAbout ? "/" : "/about"}

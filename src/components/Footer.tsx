@@ -2,26 +2,13 @@ export default function Footer() {
   return (
     <footer
       style={{
-        padding: "80px max(40px, 4vw) 60px",
+        padding: "60px max(40px, 4vw)",
         display: "flex",
-        justifyContent: "space-between",
-        alignItems: "baseline",
+        justifyContent: "center",
         borderTop: "1px solid #efefef",
         marginTop: 80,
       }}
     >
-      <div
-        style={{
-          fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
-          fontWeight: 300,
-          fontStyle: "italic",
-          fontSize: 22,
-          color: "#999",
-          whiteSpace: "nowrap",
-        }}
-      >
-        Lyndon Johnson
-      </div>
       <a
         href="mailto:jessicalynn11@yahoo.com"
         style={{
