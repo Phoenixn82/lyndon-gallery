@@ -68,22 +68,23 @@ function CanvasBack({ piece }: { piece: ArtPiece }) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "10% 12%",
-        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+        padding: "8% 10%",
+        overflow: "hidden",
+        fontFamily: "var(--font-inter), 'Inter', sans-serif",
         color: "#3a2a18",
         transform: "rotateY(180deg)",
         backfaceVisibility: "hidden",
       }}
     >
       <div style={{ position: "absolute", left: "8%", right: "8%", top: "50%", height: 14, background: "#c9a878", boxShadow: "0 1px 0 rgba(0,0,0,0.15), inset 0 0 0 1px rgba(0,0,0,0.08)", opacity: 0.7 }} />
-      <div style={{ fontSize: 28, fontStyle: "italic", letterSpacing: "0.01em", lineHeight: 1.3, position: "relative", zIndex: 1 }}>
+      <div style={{ fontSize: "clamp(14px, 4vw, 28px)", fontStyle: "italic", letterSpacing: "0.01em", lineHeight: 1.3, position: "relative", zIndex: 1, wordBreak: "break-word" }}>
         {piece.title}
       </div>
-      <div style={{ fontSize: 16, fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "#5a4028", letterSpacing: "0.05em", textTransform: "uppercase", position: "relative", zIndex: 1, textAlign: "right" }}>
+      <div style={{ fontSize: "clamp(10px, 2.5vw, 16px)", color: "#5a4028", letterSpacing: "0.05em", textTransform: "uppercase", position: "relative", zIndex: 1, textAlign: "right" }}>
         <div style={{ marginBottom: 4 }}>{piece.medium}</div>
         <div style={{ marginBottom: 4 }}>{piece.dimensions}</div>
         <div>{piece.year}</div>
-        <div style={{ marginTop: 18, fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontSize: 32, textTransform: "none", letterSpacing: "0", fontStyle: "italic", color: "#2a1a08" }}>
+        <div style={{ marginTop: 12, fontFamily: "var(--font-display), 'Pinyon Script', cursive", fontSize: "clamp(18px, 5vw, 32px)", textTransform: "none", letterSpacing: "0", color: "#2a1a08" }}>
           Lyndon
         </div>
       </div>
@@ -194,6 +195,8 @@ function FramedView({ piece }: { piece: ArtPiece }) {
           transform: `rotateY(${yRot}deg) rotateX(${xRot}deg)`,
           transformStyle: "preserve-3d",
           transition: dragging ? "none" : "transform 60ms linear",
+          maxWidth: "85vw",
+          maxHeight: "70vh",
         }}
       >
         <div
@@ -233,7 +236,7 @@ function FramedView({ piece }: { piece: ArtPiece }) {
                 alt={piece.title}
                 style={{
                   display: "block",
-                  width: "min(440px, 50vw)",
+                  width: "min(440px, 70vw)",
                   height: "auto",
                   maxHeight: "55vh",
                   objectFit: "contain",
@@ -257,7 +260,7 @@ function FramedView({ piece }: { piece: ArtPiece }) {
       <div
         style={{
           position: "absolute",
-          bottom: 22,
+          bottom: 16,
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
@@ -275,7 +278,6 @@ function FramedView({ piece }: { piece: ArtPiece }) {
         <span style={{ marginRight: 14 }}>front</span>
         <span style={{ width: 6, height: 6, borderRadius: 3, background: isBack ? "#1a1a1a" : "#ddd", transition: "background 200ms" }} />
         <span>verso</span>
-        <span style={{ marginLeft: 28, color: "#bbb" }}>drag · double-click resets</span>
       </div>
     </div>
   );
@@ -290,7 +292,7 @@ function FlatView({ piece }: { piece: ArtPiece }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "min(8vw, 80px)",
+        padding: "min(6vw, 60px)",
         position: "relative",
       }}
     >
@@ -354,30 +356,27 @@ export default function ArtModal({
       {/* Top bar */}
       <div
         style={{
-          height: 64,
+          height: 56,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 32px",
+          padding: "0 16px",
           flexShrink: 0,
           borderBottom: "1px solid #f0f0f0",
         }}
       >
         <div
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
-            fontSize: 26,
+            fontFamily: "var(--font-display), 'Pinyon Script', cursive",
+            fontSize: 24,
             color: "#1a1a1a",
-            fontStyle: "italic",
-            fontWeight: 300,
-            letterSpacing: "-0.01em",
             whiteSpace: "nowrap",
             lineHeight: 1,
           }}
         >
           Lyndon Johnson
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <button onClick={onPrev} style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 4px" }}>
             <span style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999" }}>prev</span>
           </button>
@@ -392,7 +391,7 @@ export default function ArtModal({
               color: "#999",
               fontSize: 24,
               cursor: "pointer",
-              marginLeft: 18,
+              marginLeft: 8,
               padding: "4px 8px",
               lineHeight: 1,
             }}
@@ -413,10 +412,10 @@ export default function ArtModal({
         </div>
 
         {/* Mode label */}
-        <div style={{ position: "absolute", top: 24, left: 32, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", display: "flex", gap: 18, pointerEvents: "none" }}>
-          <span style={{ color: mode === "framed" ? "#1a1a1a" : "#ccc", transition: "color 200ms" }}>3D · framed</span>
+        <div style={{ position: "absolute", top: 16, left: 16, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", display: "flex", gap: 12, pointerEvents: "none" }}>
+          <span style={{ color: mode === "framed" ? "#1a1a1a" : "#ccc", transition: "color 200ms" }}>3D</span>
           <span style={{ color: "#e0e0e0" }}>·</span>
-          <span style={{ color: mode === "flat" ? "#1a1a1a" : "#ccc", transition: "color 200ms" }}>2D · flat</span>
+          <span style={{ color: mode === "flat" ? "#1a1a1a" : "#ccc", transition: "color 200ms" }}>2D</span>
         </div>
 
         {/* Right arrow */}
@@ -425,11 +424,11 @@ export default function ArtModal({
           aria-label={mode === "framed" ? "View flat 2D image" : "View framed 3D"}
           style={{
             position: "absolute",
-            right: 28,
+            right: 12,
             top: "50%",
             transform: "translateY(-50%)",
-            width: 56,
-            height: 56,
+            width: 44,
+            height: 44,
             borderRadius: "50%",
             background: "rgba(255,255,255,0.9)",
             border: "1px solid #ececec",
@@ -441,10 +440,8 @@ export default function ArtModal({
             transition: "all 200ms ease",
             zIndex: 5,
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-50%) translateX(2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(-50%)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.06)"; }}
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6 3L12 9L6 15" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M6 3L12 9L6 15" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
 
         {/* Left arrow (flat mode only) */}
@@ -453,11 +450,11 @@ export default function ArtModal({
           aria-label="Back to framed 3D"
           style={{
             position: "absolute",
-            left: 28,
+            left: 12,
             top: "50%",
             transform: "translateY(-50%)",
-            width: 56,
-            height: 56,
+            width: 44,
+            height: 44,
             borderRadius: "50%",
             background: "rgba(255,255,255,0.9)",
             border: "1px solid #ececec",
@@ -471,10 +468,8 @@ export default function ArtModal({
             pointerEvents: mode === "flat" ? "auto" : "none",
             zIndex: 5,
           }}
-          onMouseEnter={(e) => { if (mode !== "flat") return; e.currentTarget.style.transform = "translateY(-50%) translateX(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(-50%)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.06)"; }}
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12 3L6 9L12 15" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M12 3L6 9L12 15" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
 
@@ -482,28 +477,20 @@ export default function ArtModal({
       <div
         style={{
           background: "#ffffff",
-          padding: "22px 40px 26px",
-          display: "flex",
-          gap: 60,
-          alignItems: "flex-start",
+          padding: "16px 16px 20px",
           borderTop: "1px solid #f0f0f0",
           flexShrink: 0,
         }}
       >
-        <div style={{ flex: "0 0 auto", minWidth: 280 }}>
-          <div style={{ fontSize: 17, color: "#1a1a1a", letterSpacing: "0.01em", fontWeight: 400 }}>{piece.title}</div>
-          <div style={{ fontSize: 13, color: "#888", marginTop: 6, letterSpacing: "0.02em", lineHeight: 1.7 }}>
-            {piece.medium}<br />{piece.dimensions}<br />{piece.year}
-          </div>
+        <div style={{ fontSize: 16, color: "#1a1a1a", letterSpacing: "0.01em", fontWeight: 400 }}>{piece.title}</div>
+        <div style={{ fontSize: 12, color: "#888", marginTop: 4, letterSpacing: "0.02em", lineHeight: 1.6 }}>
+          {piece.medium} · {piece.dimensions} · {piece.year}
         </div>
         {piece.description && (
-          <div style={{ flex: 1, fontSize: 13.5, color: "#666", lineHeight: 1.85, maxWidth: 560, letterSpacing: "0.01em", fontStyle: "italic", paddingTop: 4 }}>
+          <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7, fontStyle: "italic", marginTop: 8 }}>
             {piece.description}
           </div>
         )}
-        <div style={{ marginLeft: "auto", fontSize: 11, color: "#bbb", letterSpacing: "0.18em", textTransform: "uppercase", paddingTop: 4 }}>
-          /{piece.slug}
-        </div>
       </div>
     </div>
   );
