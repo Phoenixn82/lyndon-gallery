@@ -57,11 +57,15 @@ export default function ArtCard({
         className="lj-card-img"
         style={{
           position: "relative",
-          background: "#f0ede8",
+          background: "#faf8f4",
           overflow: "hidden",
           boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
           transition: "box-shadow 300ms ease",
-          aspectRatio: aspectRatio || "auto",
+          // Container is sized to the painting's natural aspect; padding gives
+          // the frame breathing room so edges never touch the card boundary.
+          aspectRatio: piece.aspect || aspectRatio,
+          minHeight: piece.aspect || aspectRatio ? undefined : 220,
+          padding: "3.5%",
         }}
       >
         {inView && (
@@ -74,7 +78,7 @@ export default function ArtCard({
               display: "block",
               width: "100%",
               height: "100%",
-              objectFit: "cover",
+              objectFit: "contain",
               opacity: loaded ? 1 : 0,
               transition: "opacity 500ms ease",
             }}

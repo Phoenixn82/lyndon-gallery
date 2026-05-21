@@ -31,16 +31,18 @@ export default function EditorialGrid({
           .editorial-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-      {pieces.map((p, i) => {
-        const featured = p.featured || i % 7 === 3;
-        const aspect = featured ? "5 / 4" : i % 3 === 0 ? "4 / 5" : "1 / 1";
+      {pieces.map((p) => {
+        const featured = !!p.featured;
         return (
           <div
             key={p.slug}
             className={featured ? "span-2" : ""}
             style={{ gridColumn: featured ? "span 2" : "span 1" }}
           >
-            <ArtCard piece={p} onClick={onPieceClick} aspectRatio={aspect} />
+            {/* No forced aspectRatio — each piece carries its own natural aspect
+                (artworks.ts) so portrait paintings render full-height instead
+                of being chopped to a square. */}
+            <ArtCard piece={p} onClick={onPieceClick} />
           </div>
         );
       })}

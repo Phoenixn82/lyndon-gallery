@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import type { ArtPiece } from "@/data/artworks";
+import Model3DView from "./Model3DView";
 
 function shade(hex: string | undefined, pct: number): string {
   if (!hex) return "#5a3a20";
@@ -57,6 +58,30 @@ function frameStyleFor(frame: ArtPiece["frame"]) {
 }
 
 function CanvasBack({ piece }: { piece: ArtPiece }) {
+  // If the piece has a real generated back image (kraft paper + wire +
+  // Lyndon signature + dimensions baked in), render it directly.
+  if (piece.back) {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          transform: "rotateY(180deg)",
+          backfaceVisibility: "hidden",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={piece.back}
+          alt={`${piece.title} (verso)`}
+          draggable="false"
+          style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </div>
+    );
+  }
+
+  // Fallback: procedural verso for pieces that don't have a back image yet.
   return (
     <div
       style={{
@@ -335,9 +360,24 @@ export default function ArtModal({
     };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+
+    // Wire the browser Back button to close the modal: push a history entry
+    // when the modal opens, then close on popstate. Pop our entry on cleanup
+    // so close-via-X / Esc doesn't leave a stale entry behind.
+    const stateKey = "lj-modal-open";
+    history.pushState({ [stateKey]: true }, "");
+    const onPop = () => onClose();
+    window.addEventListener("popstate", onPop);
+
     return () => {
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("popstate", onPop);
       document.body.style.overflow = "";
+      // If our pushed entry is still on top, remove it so the Back button
+      // doesn't have a no-op step in the user's history.
+      if (history.state && history.state[stateKey]) {
+        history.back();
+      }
     };
   }, [onClose]);
 
@@ -365,19 +405,44 @@ export default function ArtModal({
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        <a
-          href="/"
-          style={{
-            fontFamily: "var(--font-display), 'Pinyon Script', cursive",
-            fontSize: 24,
-            color: "#1a1a1a",
-            whiteSpace: "nowrap",
-            lineHeight: 1,
-            textDecoration: "none",
-          }}
-        >
-          Lyndon Johnson
-        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <button
+            onClick={onClose}
+            aria-label="Back to gallery"
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px 10px 8px 4px",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              color: "#1a1a1a",
+              fontSize: 12,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              lineHeight: 1,
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden>
+              <path d="M12 3L6 9L12 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>Back</span>
+          </button>
+          <a
+            href="/"
+            style={{
+              fontFamily: "var(--font-display), 'Pinyon Script', cursive",
+              fontSize: 24,
+              color: "#1a1a1a",
+              whiteSpace: "nowrap",
+              lineHeight: 1,
+              textDecoration: "none",
+            }}
+          >
+            Lyndon Johnson
+          </a>
+        </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <button onClick={onPrev} style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 4px" }}>
             <span style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999" }}>prev</span>
@@ -407,7 +472,11 @@ export default function ArtModal({
       {/* Stage */}
       <div style={{ flex: 1, position: "relative", minHeight: 0 }}>
         <div style={{ position: "absolute", inset: 0, display: "flex", opacity: mode === "framed" ? 1 : 0, transition: "opacity 350ms ease", pointerEvents: mode === "framed" ? "auto" : "none" }}>
-          <FramedView piece={piece} key={piece.slug} />
+          {piece.model3d ? (
+            <Model3DView piece={piece} key={piece.slug} />
+          ) : (
+            <FramedView piece={piece} key={piece.slug} />
+          )}
         </div>
         <div style={{ position: "absolute", inset: 0, display: "flex", opacity: mode === "flat" ? 1 : 0, transition: "opacity 350ms ease", pointerEvents: mode === "flat" ? "auto" : "none" }}>
           <FlatView piece={piece} />
