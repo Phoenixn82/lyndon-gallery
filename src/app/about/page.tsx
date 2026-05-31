@@ -1,10 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactBar from "@/components/ContactBar";
 
 export default function AboutPage() {
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", color: "#1a1a1a" }}>
       <Header />
+      <ContactBar />
       <main style={{ padding: "max(60px, 6vw) max(40px, 4vw) 80px", maxWidth: 720, margin: "0 auto" }}>
         <div
           style={{
@@ -78,41 +80,8 @@ export default function AboutPage() {
         <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 28 }}>
           Lyndon believed beauty was both an art and a form of confidence. Whether through hairstyling, makeup, fashion guidance, or painting, he helped people see themselves and the world around them, with greater elegance and possibility. His legacy remains one of style, artistry, and unforgettable presence.
         </div>
-        <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", marginBottom: 56, fontStyle: "italic" }}>
+        <div style={{ fontSize: 15, color: "#555", lineHeight: 1.85, letterSpacing: "0.005em", fontStyle: "italic" }}>
           This website is dedicated to preserving and celebrating his life, his work, and the lasting mark he left on Houston&rsquo;s artistic and cultural community.
-        </div>
-
-        <div
-          style={{
-            paddingTop: 28,
-            borderTop: "1px solid #efefef",
-            fontSize: 14,
-            color: "#666",
-            lineHeight: 1.75,
-            marginBottom: 32,
-          }}
-        >
-          If you own or have come across one of Lyndon&rsquo;s paintings and would like to share information or connect with the family, please reach out to his niece Jessica at the address below.
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 32,
-            fontSize: 12,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-          }}
-        >
-          <div>
-            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>contact</div>
-            <a href="mailto:jessicalynn11@yahoo.com" style={{ color: "#1a1a1a", textDecoration: "none" }}>jessicalynn11@yahoo.com</a>
-          </div>
-          <div>
-            <div style={{ color: "#bbb", marginBottom: 6, fontSize: 10 }}>in memory</div>
-            <span style={{ color: "#1a1a1a" }}>Houston, TX · 1941–1995</span>
-          </div>
         </div>
       </main>
       <Footer />
