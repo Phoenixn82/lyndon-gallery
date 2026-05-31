@@ -381,9 +381,8 @@ export default function ArtModal({
     };
   }, [onClose]);
 
-  // prev/next painting nav. Rendered inline in the top bar on desktop, and on a
-  // dedicated row beneath the logo on mobile — where the top bar is too narrow
-  // and the logo collided with the buttons.
+  // prev/next painting nav, shown in a row directly under the painting (keeps it
+  // clear of the top-bar logo, which it used to collide with on mobile).
   const navBtnStyle: React.CSSProperties = {
     background: "transparent",
     border: "none",
@@ -419,12 +418,6 @@ export default function ArtModal({
         animation: "lj-fade 280ms ease",
       }}
     >
-      <style>{`
-        @media (max-width: 600px) {
-          .lj-nav-inline { display: none !important; }
-          .lj-nav-row { display: flex !important; }
-        }
-      `}</style>
       {/* Top bar */}
       <div
         style={{
@@ -475,43 +468,21 @@ export default function ArtModal({
             Lyndon Johnson
           </a>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span className="lj-nav-inline" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            {navButtons}
-          </span>
-          <button
-            onClick={onClose}
-            style={{
-              background: "transparent",
-              border: "none",
-              color: "#999",
-              fontSize: 24,
-              cursor: "pointer",
-              marginLeft: 8,
-              padding: "4px 8px",
-              lineHeight: 1,
-            }}
-            aria-label="Close"
-          >
-            ×
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile-only prev/next row, sitting under the logo (hidden ≥601px) */}
-      <div
-        className="lj-nav-row"
-        style={{
-          display: "none",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 40,
-          height: 44,
-          flexShrink: 0,
-          borderBottom: "1px solid #f0f0f0",
-        }}
-      >
-        {navButtons}
+        <button
+          onClick={onClose}
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "#999",
+            fontSize: 24,
+            cursor: "pointer",
+            padding: "4px 8px",
+            lineHeight: 1,
+          }}
+          aria-label="Close"
+        >
+          ×
+        </button>
       </div>
 
       {/* Stage */}
@@ -587,6 +558,21 @@ export default function ArtModal({
         >
           <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M12 3L6 9L12 15" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
+      </div>
+
+      {/* Prev/next — directly under the painting */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 40,
+          padding: "8px 16px",
+          borderTop: "1px solid #f0f0f0",
+          flexShrink: 0,
+        }}
+      >
+        {navButtons}
       </div>
 
       {/* Bottom info bar */}
