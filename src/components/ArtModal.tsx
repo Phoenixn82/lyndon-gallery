@@ -381,6 +381,32 @@ export default function ArtModal({
     };
   }, [onClose]);
 
+  // prev/next painting nav. Rendered inline in the top bar on desktop, and on a
+  // dedicated row beneath the logo on mobile — where the top bar is too narrow
+  // and the logo collided with the buttons.
+  const navBtnStyle: React.CSSProperties = {
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    padding: "8px 10px",
+  };
+  const navLabelStyle: React.CSSProperties = {
+    fontSize: 11,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color: "#999",
+  };
+  const navButtons = (
+    <>
+      <button onClick={onPrev} style={navBtnStyle}>
+        <span style={navLabelStyle}>prev</span>
+      </button>
+      <button onClick={onNext} style={navBtnStyle}>
+        <span style={navLabelStyle}>next</span>
+      </button>
+    </>
+  );
+
   return (
     <div
       style={{
@@ -393,6 +419,12 @@ export default function ArtModal({
         animation: "lj-fade 280ms ease",
       }}
     >
+      <style>{`
+        @media (max-width: 600px) {
+          .lj-nav-inline { display: none !important; }
+          .lj-nav-row { display: flex !important; }
+        }
+      `}</style>
       {/* Top bar */}
       <div
         style={{
@@ -444,12 +476,9 @@ export default function ArtModal({
           </a>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button onClick={onPrev} style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 4px" }}>
-            <span style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999" }}>prev</span>
-          </button>
-          <button onClick={onNext} style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 4px" }}>
-            <span style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999" }}>next</span>
-          </button>
+          <span className="lj-nav-inline" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {navButtons}
+          </span>
           <button
             onClick={onClose}
             style={{
@@ -467,6 +496,22 @@ export default function ArtModal({
             ×
           </button>
         </div>
+      </div>
+
+      {/* Mobile-only prev/next row, sitting under the logo (hidden ≥601px) */}
+      <div
+        className="lj-nav-row"
+        style={{
+          display: "none",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 40,
+          height: 44,
+          flexShrink: 0,
+          borderBottom: "1px solid #f0f0f0",
+        }}
+      >
+        {navButtons}
       </div>
 
       {/* Stage */}
