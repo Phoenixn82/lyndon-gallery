@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EditorialGrid from "@/components/EditorialGrid";
 import ArtModal from "@/components/ArtModal";
+import IntentPopup from "@/components/IntentPopup";
 import { defaultArtworks } from "@/data/artworks";
 
 export default function GalleryPage() {
@@ -12,20 +13,9 @@ export default function GalleryPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", color: "#1a1a1a" }}>
+      <IntentPopup />
       <Header />
       <main style={{ padding: "max(40px, 4vw) max(40px, 4vw) 0" }}>
-        <div
-          style={{
-            fontSize: 13,
-            color: "#999",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            marginBottom: 36,
-            paddingLeft: 2,
-          }}
-        >
-          paintings · {pieces.length}
-        </div>
         {pieces.length > 0 ? (
           <EditorialGrid
             pieces={pieces}

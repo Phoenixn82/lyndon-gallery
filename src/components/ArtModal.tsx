@@ -553,9 +553,9 @@ export default function ArtModal({
           flexShrink: 0,
         }}
       >
-        <div style={{ fontSize: 16, color: "#1a1a1a", letterSpacing: "0.01em", fontWeight: 400 }}>{piece.title}</div>
-        <div style={{ fontSize: 12, color: "#888", marginTop: 4, letterSpacing: "0.02em", lineHeight: 1.6 }}>
-          {piece.medium} · {piece.dimensions} · {piece.year}
+        {/* Title + year hidden for now (data kept in artworks.ts). */}
+        <div style={{ fontSize: 12, color: "#888", letterSpacing: "0.02em", lineHeight: 1.6 }}>
+          {piece.medium} · {piece.dimensions}
         </div>
         {piece.description && (
           <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7, fontStyle: "italic", marginTop: 8 }}>

@@ -96,14 +96,8 @@ export default function ArtCard({
           />
         )}
       </div>
-      <div style={{ paddingTop: 12, paddingLeft: 2 }}>
-        <div style={{ fontSize: 14, color: "#333", letterSpacing: "0.01em", fontWeight: 400 }}>
-          {piece.title}
-        </div>
-        <div style={{ fontSize: 12.5, color: "#999", letterSpacing: "0.02em", marginTop: 3 }}>
-          {piece.medium}, {piece.year}
-        </div>
-      </div>
+      {/* Card captions (title / medium / year) intentionally hidden for now —
+          data still lives in artworks.ts; restore this block to bring them back. */}
     </div>
   );
 }
